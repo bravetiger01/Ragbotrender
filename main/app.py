@@ -147,6 +147,8 @@ def ask():
             return jsonify({"error": "Query parameter is required"}), 400
         
         result = process_query(query)
+
+        print("Response:", result)
         
         return jsonify(result)
     except Exception as e:
