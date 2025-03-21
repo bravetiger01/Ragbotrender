@@ -2,7 +2,7 @@
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.tokenize import word_tokenize
-import config
+from main import config
 
 class SimpleRetriever:
     def __init__(self, chunks, embeddings, processor):

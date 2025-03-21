@@ -7,7 +7,7 @@ from tqdm import tqdm
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from nltk.tokenize import sent_tokenize, word_tokenize
-import config
+from main import config
 
 # Download NLTK resources
 nltk.download('punkt', quiet=True)
