@@ -139,15 +139,18 @@ def index():
 
 @app.route('/ask', methods=['POST'])
 def ask():
-    data = request.json
-    query = data.get('query', '')
-    
-    if not query:
-        return jsonify({"error": "Query parameter is required"}), 400
-    
-    result = process_query(query)
-    
-    return jsonify(result)
+    try:
+        data = request.json
+        query = data.get('query', '')
+        
+        if not query:
+            return jsonify({"error": "Query parameter is required"}), 400
+        
+        result = process_query(query)
+        
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500  # Ensure errors return JSON
 
 @app.route('/chat')
 def chat_interface():
