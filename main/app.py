@@ -6,7 +6,7 @@ import requests
 import flask
 from flask import Flask, request, jsonify
 from sentence_transformers import SentenceTransformer
-import config
+from main import config
 from processor import DataProcessor
 from retriever import SimpleRetriever
 import nltk
