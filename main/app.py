@@ -155,7 +155,7 @@ def ask():
         
         return jsonify(result)
     except Exception as e:
-        return jsonify({"error": str(e)}), 500  # Ensure errors return JSON
+        return jsonify({"error": f"abc + {str(e)}"}), 500  # Ensure errors return JSON
 
 @app.route('/chat')
 def chat_interface():
@@ -207,7 +207,7 @@ def chat_interface():
                     }
                 })
                 .catch(error => {
-                    addMessage('Error: ' + error);
+                    addMessage('Error: abc2 ' + error);
                 });
             }
             
