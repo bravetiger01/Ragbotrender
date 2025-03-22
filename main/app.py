@@ -183,7 +183,7 @@ def chat_interface():
                 addMessage('User: ' + query);
                 input.value = '';
                 
-                fetch('/ask', {
+                fetch('https://ragbot-3ftt.onrender.com/ask', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ query: query })
