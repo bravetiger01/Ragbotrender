@@ -132,7 +132,7 @@ Answer in clear, concise English:"""
     
     return {
         "query": query,
-        "answer": response,
+        "answer": "Helllo world",
         "sources": [chunk["metadata"] for chunk in retrieved_chunks]
     }
 
@@ -231,6 +231,12 @@ def chat_interface():
 def test():
     return jsonify({"status": "API is working"})
 
-if __name__ == '__main__':
+# Global initialization - outside of if __name__ == '__main__'
+try:
     initialize_system()
+    print("System initialized successfully at application startup!")
+except Exception as e:
+    print(f"⚠️ System initialization failed: {str(e)}")
+
+if __name__ == '__main__':
     app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG)
