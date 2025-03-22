@@ -140,7 +140,7 @@ Answer in clear, concise English:"""
 def index():
     return "RAG System with Google Gemini is running!"
 
-@app.route('/ask', methods=['POST', 'GET'])
+@app.route('/ask', methods=['POST'])
 def ask():
     try:
         data = request.json
@@ -148,6 +148,8 @@ def ask():
         
         if not query:
             return jsonify({"error": "Query parameter is required"}), 400
+        
+        initialize_system()
         
         result = process_query(query)
 
