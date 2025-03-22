@@ -10,8 +10,11 @@ from main import config
 from main.processor import DataProcessor
 from main.retriever import SimpleRetriever
 import nltk
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Add this line to enable CORS for all routes
+
 
 # Global variables for the RAG system
 processor = None
@@ -183,7 +186,7 @@ def chat_interface():
                 addMessage('User: ' + query);
                 input.value = '';
                 
-                fetch('https://ragbot-3ftt.onrender.com/ask', {
+                fetch('/ask', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ query: query })
@@ -223,6 +226,10 @@ def chat_interface():
     </body>
     </html>
     """
+
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({"status": "API is working"})
 
 if __name__ == '__main__':
     initialize_system()
