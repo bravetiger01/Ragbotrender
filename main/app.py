@@ -233,10 +233,10 @@ def test():
 
 # Global initialization - outside of if __name__ == '__main__'
 try:
-    initialize_system()
     print("System initialized successfully at application startup!")
 except Exception as e:
     print(f"⚠️ System initialization failed: {str(e)}")
 
 if __name__ == '__main__':
+    initialize_system()
     app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG)
