@@ -137,7 +137,7 @@ Answer in clear, concise English:"""
 def index():
     return "RAG System with Google Gemini is running!"
 
-@app.route('/ask', methods=['POST'])
+@app.route('/ask', methods=['POST', 'GET'])
 def ask():
     try:
         data = request.json
