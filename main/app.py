@@ -6,9 +6,9 @@ import requests
 import flask
 from flask import Flask, request, jsonify
 from sentence_transformers import SentenceTransformer
-import config
-from processor import DataProcessor
-from retriever import SimpleRetriever
+from main import config
+from main.processor import DataProcessor
+from main.retriever import SimpleRetriever
 import nltk
 
 app = Flask(__name__)

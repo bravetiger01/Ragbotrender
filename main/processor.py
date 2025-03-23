@@ -134,6 +134,14 @@ class DataProcessor:
             batch_texts = texts[i:i+batch_size]
             batch_embeddings = self.embedding_model.encode(batch_texts)
             embeddings.extend(batch_embeddings)
+            
+            # Save the batch embeddings to disk
+            np.save(f"batch_embeddings_{i}.npy", batch_embeddings)
+        
+        # Load the batch embeddings from disk
+        for i in range(0, len(texts), batch_size):
+            batch_embeddings = np.load(f"batch_embeddings_{i}.npy")
+            embeddings.extend(batch_embeddings)
         
         # Convert to numpy array
         embeddings_array = np.array(embeddings)
