@@ -6,15 +6,12 @@ import requests
 import flask
 from flask import Flask, request, jsonify
 from sentence_transformers import SentenceTransformer
-from main import config
-from main.processor import DataProcessor
-from main.retriever import SimpleRetriever
+import config
+from processor import DataProcessor
+from retriever import SimpleRetriever
 import nltk
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Add this line to enable CORS for all routes
-
 
 # Global variables for the RAG system
 processor = None
@@ -132,7 +129,7 @@ Answer in clear, concise English:"""
     
     return {
         "query": query,
-        "answer": "Helllo world",
+        "answer": response,
         "sources": [chunk["metadata"] for chunk in retrieved_chunks]
     }
 
@@ -149,11 +146,7 @@ def ask():
         if not query:
             return jsonify({"error": "Query parameter is required"}), 400
         
-        initialize_system()
-        
         result = process_query(query)
-
-        print("Response:", result)
         
         return jsonify(result)
     except Exception as e:
@@ -209,7 +202,7 @@ def chat_interface():
                     }
                 })
                 .catch(error => {
-                    addMessage('Error: abc2 ' + error);
+                    addMessage('Error: ' + error);
                 });
             }
             
@@ -228,16 +221,6 @@ def chat_interface():
     </body>
     </html>
     """
-
-@app.route('/test', methods=['GET'])
-def test():
-    return jsonify({"status": "API is working"})
-
-# Global initialization - outside of if __name__ == '__main__'
-try:
-    print("System initialized successfully at application startup!")
-except Exception as e:
-    print(f"⚠️ System initialization failed: {str(e)}")
 
 if __name__ == '__main__':
     initialize_system()
