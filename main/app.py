@@ -140,6 +140,7 @@ def index():
 @app.route('/ask', methods=['POST'])
 def ask():
     try:
+        initialize_system()
         data = request.json
         query = data.get('query', '')
         
@@ -223,5 +224,4 @@ def chat_interface():
     """
 
 if __name__ == '__main__':
-    initialize_system()
     app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG)
